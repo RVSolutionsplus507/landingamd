@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+# Sitemap
+Sitemap: https://almacenajes-minidepositos.com/sitemap.xml

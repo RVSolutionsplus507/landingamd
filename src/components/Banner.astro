@@ -1,6 +1,8 @@
 ---
 console.log("javascript");
 import "../input.css";
+import { Image } from 'astro:assets';
+import promocion from '/src/assets/promo-banner.webp';
 ---
 
 <section id="Inicio" class="xs:pt-16 sm:pt-16 md:pt-18 lg:pt-16">
@@ -37,10 +39,10 @@ import "../input.css";
                 </div>
             </div>
             <div class="lg:max-w-lg lg:w-full md:w-11/12 sm:w-11/12 h-full mb-0">
-                <img
-                    src="./src/assets/promo-banner.webp"
+                <Image
+                    src={promocion}
                     alt="Promoción"
-                    class="object-cover promocion object-bottom bg-white border"
+                    class="object-cover object-bottom"
                 />
             </div>
         </div>
@@ -65,7 +67,4 @@ import "../input.css";
         width: 100%;
     }
 
-    .promocion {
-        background-image: url("/src/assets/promo-banner.webp"); 
-    }
 </style>

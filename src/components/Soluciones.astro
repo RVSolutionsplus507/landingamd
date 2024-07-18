@@ -1,13 +1,12 @@
 ---
 console.log("javascript");
-
-/* crear constante para imagen con ruta /src/assets/imagen.png */
-const imagen1 = "./src/assets/Operativos.webp";
-const imagen2 = "./src/assets/Montacarga.webp";
-const imagen3 = "./src/assets/Seguridad.webp";
-const imagen4 = "./src/assets/Depositos-techados.webp";
-const imagen5 = "./src/assets/Comodidad-auto.webp";
-const imagen6 = "./src/assets/Elevador-de-carga.webp";
+import { Image } from 'astro:assets';
+import imagen1 from '/src/assets/Operativos.webp';
+import imagen2 from '/src/assets/Montacarga.webp';
+import imagen3 from '/src/assets/Seguridad.webp';
+import imagen4 from '/src/assets/Depositos-techados.webp';
+import imagen5 from '/src/assets/Comodidad-auto.webp';
+import imagen6 from '/src/assets/Elevador-de-carga.webp';
 ---
 
 <section id="Soluciones" class="m-auto pt-14">
@@ -40,32 +39,32 @@ const imagen6 = "./src/assets/Elevador-de-carga.webp";
           <div
             class="grid grid-cols-1 min-[450px]:grid-cols-2 md:grid-cols-3 gap-8"
           >
-            <img
-              src={imagen1}
+            <Image
+              src={imagen1}        
               alt="Operativos"
               class="w-44 h-56 rounded object-cover md:mt-20 mx-auto min-[450px]:mr-0"
             />
-            <img
+            <Image
               src={imagen2}
               alt="Montacarga"
               class="w-44 h-56 rounded object-cover mx-auto min-[450px]:ml-0 md:mx-auto"
             />
-            <img
+            <Image
               src={imagen3}
               alt="Seguridad"
               class="w-44 h-56 rounded object-cover md:mt-20 mx-auto min-[450px]:mr-0 md:ml-0"
             />
-            <img
+            <Image
               src={imagen4}
               alt="Depositos techados"
               class="w-44 h-56 rounded object-cover mx-auto min-[450px]:ml-0 md:mr-0 md:ml-auto"
             />
-            <img
+            <Image
               src={imagen5}
               alt="Comodidad del auto"
               class="w-44 h-56 rounded object-fit md:-mt-20 mx-auto min-[450px]:mr-0 md:mx-auto"
             />
-            <img
+            <Image
               src={imagen6}
               alt="Elevador-de-carga"
               class="w-44 h-56 rounded object-cover mx-auto min-[450px]:ml-0 md:mr-0"
@@ -97,4 +96,5 @@ const imagen6 = "./src/assets/Elevador-de-carga.webp";
   :hover.primary {
     background-color: #c44e1e;
   }
+
 </style>
