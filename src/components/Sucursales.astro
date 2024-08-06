@@ -1,11 +1,18 @@
 ---
 console.log("javascript");
 ---
-
 <section id="Sucursales" class="pt-14">
     <div data-aos="fade-down">
         <h2 class="text-center text-3xl m-2">Nuestras sucursales</h2>
-        <div
+        <div class="responsiveWrapper">
+            <iframe
+                 title="Sucursales Almacenajes"
+                src="https://www.google.com/maps/d/u/0/embed?mid=1It3n67GZ0gzGfeKF1EmOWsBSEZcMi1I&ehbc=2E312F&noprof=1"
+                class="mapaint"
+            >
+            </iframe>
+        </div>
+        <!-- <div
             class="container mx-auto flex sm:px-4 md:px-8 lg:px-12 pt-3 md:flex-row flex-col items-center"
         >
             <div
@@ -162,10 +169,9 @@ console.log("javascript");
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
-
 <style>
     h2 {
         display: block;
@@ -192,24 +198,5 @@ console.log("javascript");
     .mapaint {
         width: 100%;
         height: auto;
-    }
-
-    .text-primary {
-        color: #f26233;
-    }
-    .primary {
-        background-color: #f26233;
-    }
-
-    :hover.primary {
-        background-color: #c44e1e;
-    }
-
-    .zoom:hover {
-        transform: scale(1.1);
-        transition: transform 0.3s ease-out;
-        z-index: 40;
-        border-color: #c44e1e;
-        box-shadow: #c44e1e;
     }
 </style>
