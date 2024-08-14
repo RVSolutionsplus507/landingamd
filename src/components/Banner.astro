@@ -1,64 +1,106 @@
 ---
 console.log("javascript");
 import "../css/input.css";
-import { Image } from 'astro:assets';
-import promocion from '/src/assets/banner-promocion.webp';
+import { Image } from "astro:assets";
+import texto from "/src/assets/Mes_gratis.webp";
+import Prom_ago from "/src/assets/Agosto.webp";
+import chica from "/src/assets/Chica.webp";
 ---
 
 <section id="Inicio" class="xs:pt-16 sm:pt-16 md:pt-18 lg:pt-16">
     <!-- Hero section with background image, heading, subheading and button -->
 
-    <div
-        class="bg-[url('/src/assets/Fondo-banner-LP-min.webp')] bg-cover bg-[50%] bg-no-repeat lg:max-h-lg lg:h-full md:h-1/2 h-5/6"
-    >
+    <div class="mx-auto max-w-7xl px-6 pb-16 lg:px-8">
         <div
-            class="container mx-auto flex sm:px-4 md:px-8 lg:px-12 pt-3 md:flex-row flex-col items-center"
+            class="mx-auto max-w-lg md:grid md:max-w-none sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 justify-around"
         >
-            <div
-                class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-4 md:mb-0 items-center text-center"
-            >
-                <h1 class="mb-6 text-5xl text-white text-left font-bold">
-                    Almacenajes Minidepósitos
-                </h1>
-                <p class="mb-8 text-md text-white sm:text-center md:text-left lg:text-left">
-                    ¿Necesitas espacio extra para guardar tus objetos personales
-                    de valor que no son de uso diario? <br />
-                    Te ayudamos a maximizar tu espacio y minimizar tu estrés.
-                </p>
-                <div class="flex justify-center m-auto">
-                    <a
-                        type="button"
-                        href="#Cotizacion"
-                        class="inline-block mb-3 rounded border-2 text-primary font-bold border-orange-500 primary px-6 pb-[6px] pt-2 text-xs uppercase leading-normal text-neutral transition duration-150 ease-in-out hover:border-orange-300 focus:border-neutral-300 focus:text-neutral-200 focus:outline-none focus:ring-0 active:border-neutral-300 active:text-neutral-200"
-                        rel="noreferrer"
-                        data-twe-ripple-init
-                        data-twe-ripple-color="light"
-                    >
-                        Obtén tu cotización ahora
-                    </a>
+            <div>
+                <div
+                    class="bg-[url('/src/assets/Fondo_izq.webp')] lg:max-h-lg lg:h-full md:h-1/2 h-5/6 bg-cover bg-no-repeat m-0 p-0"
+                >
+                    <div class="mt-2">
+                        <div class="flex flex-col">
+                            <div class="flex items-center mt-2">
+                                <div class="relative max-w-xs col-span-1">
+                                    <div
+                                        class="flex m-auto lg:max-h-lg lg:h-full md:h-1/2 h-5/6"
+                                    >
+                                        <Image
+                                            src={Prom_ago}
+                                            alt="Fondo"
+                                            class="bg-contain bg-no-repeat w-fit lg:h-3/5 md:h-5/6 sm:h-2/5 m-auto"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="lg:max-w-lg lg:w-full md:w-11/12 sm:w-11/12 h-full mb-0">
-                <Image
-                    src={promocion}
-                    alt="Almacenaje con promoción de 1 mes gratis en mini depósitos"
-                    class="object-cover object-bottom "
-                    width="400"
-                />
+            <div
+                class="bg-[url('/src/assets/Fondo_der.webp')] lg:max-h-lg lg:h-full md:h-1/2 h-5/6 bg-cover bg-no-repeat m-0 p-0 col-span-2"
+            >
+                <div class="border-red-600 border-2">
+                    <div class="mt-2">
+                        <div class="flex flex-col">
+                            <div class="flex items-center mt-2">
+                                <div class="relative max-w-xs col-span-1">
+                                    <Image
+                                        src={texto}
+                                        alt="Fondo"
+                                        class="bg-cover bg-no-repeat w-3/5 h-3/5 m-auto"
+                                    />
+                                </div>
+                                <p class="p-8 text-md text-white text-center">
+                                    Reserva tu espacio hoy <br />
+                                    y guarda tus cosas <br />
+                                    sin costo inicial!
+                                </p>
+
+                                <div class="flex items-center mt-6">
+                                    <a
+                                        type="button"
+                                        href="#Cotizacion"
+                                        class="inline-block mb-3 rounded border-2 text-primary font-bold border-orange-500 primary px-6 pb-[6px] pt-2 text-xs uppercase leading-normal text-neutral transition duration-150 ease-in-out hover:border-orange-300 focus:border-neutral-300 focus:text-neutral-200 focus:outline-none focus:ring-0 active:border-neutral-300 active:text-neutral-200"
+                                        rel="noreferrer"
+                                        data-twe-ripple-init
+                                        data-twe-ripple-color="light"
+                                    >
+                                        Obtén tu cotización ahora
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="mt-2">
+                        <div class="flex flex-col">
+                            <div class="flex justify-around mt-2">
+                                <Image
+                                    src={chica}
+                                    alt="Almacenaje con promoción de 1 mes gratis en mini depósitos"
+                                    class="object-cover object-bottom"
+                                    width="400"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</section>
-<style>
-    .text-primary {
-        color: #f26233;
-    }
-    .primary {
-        background-color: #ffffff;
-    }
+    <style>
+        .text-primary {
+            color: #f26233;
+        }
+        .primary {
+            background-color: #ffffff;
+        }
 
-    :hover.primary {
-        background-color: #f26233;
-        color: #ffffff;
-    }
-</style>
+        :hover.primary {
+            background-color: #f26233;
+            color: #ffffff;
+        }
+    </style>
+</section>
