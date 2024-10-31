@@ -32,6 +32,15 @@ const { title } = Astro.props;
 			rel="stylesheet"
 			crossorigin="anonymous"
 		/>
+		<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.GTAG_ID}`}></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				window.dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', import.meta.env.GTAG_ID);
+		</script>
 		
 		<script type="application/ld+json">
 			{
@@ -59,7 +68,7 @@ const { title } = Astro.props;
 			  "keywords": "almacenajes, almacenajes y minidepositos, almacenajes minidepositos, depositos en panama, alquiler de bodegas pequeñas, bodegas en panama, alquiler de depositos, mini depositos panama, almacenajes panama, minidepositos panama, almacenamiento seguro"
 			}
 		</script>
-		<GoogleAnalytics />	
+		<!-- <GoogleAnalytics />	 -->
 	</head>
 	<body>
 		<slot />
