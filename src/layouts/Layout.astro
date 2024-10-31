@@ -1,6 +1,7 @@
 ---
 
 import "aos/dist/aos.css";
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 
 interface Props {
 	title: string;
@@ -57,9 +58,8 @@ const { title } = Astro.props;
 			  },
 			  "keywords": "almacenajes, almacenajes y minidepositos, almacenajes minidepositos, depositos en panama, alquiler de bodegas pequeñas, bodegas en panama, alquiler de depositos, mini depositos panama, almacenajes panama, minidepositos panama, almacenamiento seguro"
 			}
-			</script>
-			
-			
+		</script>
+		<GoogleAnalytics />	
 	</head>
 	<body>
 		<slot />
