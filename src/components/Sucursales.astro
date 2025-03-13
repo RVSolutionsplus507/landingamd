@@ -1,189 +1,182 @@
 ---
-console.log("javascript");
+// Define las ubicaciones de las sucursales con sus coordenadas
+const locations = [
+    { name: "Vista Hermosa", lat: 9.008480066740818, lng: -79.5175257576726 },
+    { name: "Rio Abajo", lat: 9.011832844225474, lng: -79.5059623 },
+    { name: "Albrook", lat: 8.978114554309307, lng: -79.54192717116369 },
+    { name: "San Antonio", lat: 9.052350711404221, lng: -79.4412027576726 },
+    { name: "Milla 8", lat: 9.070390880196879, lng: -79.5196725682349 },
+    { name: "Costa del Este", lat: 9.012290217027257, lng: -79.48114330426797 },
+    { name: "Colon", lat: 9.3202285376715, lng: -79.8775165 },
+    { name: "Gorgona", lat: 8.56538086993583, lng: -79.88904470713965 },
+    { name: "Coronado Mall", lat: 8.542018238887817, lng: -79.91372754608231 },
+    { name: "David", lat: 8.438767045161555, lng: -82.46847779416585 },
+    { name: "Hato Montaña", lat: 8.91822824497867, lng: -79.73996676234573 },
+    { name: "Tumba Muerto", lat: 9.012982007545137, lng: -79.53455108840691 }
+];
+
+// URL base del mapa
+const baseMapUrl = "https://www.google.com/maps/d/u/0/embed?mid=1It3n67GZ0gzGfeKF1EmOWsBSEZcMi1I&ehbc=2E312F&noprof=1";
 ---
+
 <section id="Sucursales" class="pt-14">
     <div data-aos="fade-down">
         <h2 class="text-center text-3xl m-2">Nuestras sucursales</h2>
+        
+        <!-- Tarjetas de ubicación -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-4">
+            {locations.map((location, index) => (
+                <div 
+                    class="location-card cursor-pointer border border-gray-200 rounded-lg hover:shadow-md transition-all"
+                    data-index={index}
+                    data-lat={location.lat}
+                    data-lng={location.lng}
+                >
+                    <div class="flex items-center p-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5 text-orange-500 fill-orange-500" viewBox="0 0 24 24">
+                            <path d="M12 2c-3.87 0-7 3.13-7 7 0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5.79 0 1-.95 1.25-1.5.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4.92-1.47 1.42-3.1 1.42-4.84 0-3.87-3.13-7-7-7zm0 9.75c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                        </svg>
+                        <span class="font-medium">{location.name}</span>
+                    </div>
+                </div>
+            ))}
+        </div>
+        
+        <!-- Botones de ubicación y direcciones -->
+        <div class="flex flex-wrap gap-2 mb-4 justify-center">
+            <button 
+                id="get-location-btn"
+                class="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md text-sm font-medium bg-white hover:bg-gray-50"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                </svg>
+                Usar mi ubicación
+            </button>
+            
+            <button 
+                id="get-directions-btn"
+                class="hidden items-center gap-2 px-4 py-2 border border-transparent rounded-md text-sm font-medium text-white bg-orange-500 hover:bg-orange-600"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 8a5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5z"></path>
+                    <path d="M15.3 13.3 12 22l-7.5-7.5a9 9 0 0 1 15.3-9.7"></path>
+                </svg>
+                Obtener direcciones
+            </button>
+        </div>
+        
+        <!-- Mapa de Google -->
         <div class="responsiveWrapper">
             <iframe
-                 title="Sucursales Almacenajes"
-                src="https://www.google.com/maps/d/u/0/embed?mid=1It3n67GZ0gzGfeKF1EmOWsBSEZcMi1I&ehbc=2E312F&noprof=1"
+                id="map-iframe"
+                title="Sucursales Almacenajes"
+                src={baseMapUrl}
                 class="mapaint"
             >
             </iframe>
         </div>
-        <!-- <div
-            class="container mx-auto flex sm:px-4 md:px-8 lg:px-12 pt-3 md:flex-row flex-col items-center"
-        >
-            <div
-                class="responsiveWrapper lg:w-10/12 md:w-10/12 sm:w-11/12 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-4 md:mb-0 items-center text-center"
-            >
-                <iframe
-                        title="Sucursales Almacenajes"
-                        src="https://www.google.com/maps/d/u/0/embed?mid=1It3n67GZ0gzGfeKF1EmOWsBSEZcMi1I&ehbc=2E312F&noprof=1"
-                        class="mapaint"
-                    >
-                    </iframe>  
-            </div>
-            <div class="lg:w-2/12 md:w-2/12 sm:w-2/12 h-full mx-2">
-                <ul>
-                    <li class="flex inline-block">
-                        <svg
-                            enable-background="new 0 0 24 24"
-                            class="fill-orange-500"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path d="m0 0h24v24h-24z" fill="none"></path><path
-                                d="m12 2c-3.87 0-7 3.13-7 7 0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5.79 0 1-.95 1.25-1.5.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4.92-1.47 1.42-3.1 1.42-4.84 0-3.87-3.13-7-7-7zm0 9.75c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                            ></path></svg
-                        >
-                        Albrook
-                    </li>
-                    <li class="flex inline-block">
-                        <svg
-                            enable-background="new 0 0 24 24"
-                            class="fill-orange-500"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path d="m0 0h24v24h-24z" fill="none"></path><path
-                                d="m12 2c-3.87 0-7 3.13-7 7 0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5.79 0 1-.95 1.25-1.5.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4.92-1.47 1.42-3.1 1.42-4.84 0-3.87-3.13-7-7-7zm0 9.75c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                            ></path></svg
-                        >
-                        Colón
-                    </li>
-                    <li class="flex inline-block">
-                        <svg
-                            enable-background="new 0 0 24 24"
-                            class="fill-orange-500"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path d="m0 0h24v24h-24z" fill="none"></path><path
-                                d="m12 2c-3.87 0-7 3.13-7 7 0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5.79 0 1-.95 1.25-1.5.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4.92-1.47 1.42-3.1 1.42-4.84 0-3.87-3.13-7-7-7zm0 9.75c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                            ></path></svg
-                        >
-                        Costa del Este
-                    </li>
-                    <li class="flex inline-block">
-                        <svg
-                            enable-background="new 0 0 24 24"
-                            class="fill-orange-500"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path d="m0 0h24v24h-24z" fill="none"></path><path
-                                d="m12 2c-3.87 0-7 3.13-7 7 0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5.79 0 1-.95 1.25-1.5.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4.92-1.47 1.42-3.1 1.42-4.84 0-3.87-3.13-7-7-7zm0 9.75c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                            ></path></svg
-                        >
-                        David
-                    </li>
-                    <li class="flex inline-block">
-                        <svg
-                            enable-background="new 0 0 24 24"
-                            class="fill-orange-500"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path d="m0 0h24v24h-24z" fill="none"></path><path
-                                d="m12 2c-3.87 0-7 3.13-7 7 0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5.79 0 1-.95 1.25-1.5.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4.92-1.47 1.42-3.1 1.42-4.84 0-3.87-3.13-7-7-7zm0 9.75c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                            ></path></svg
-                        >
-                        Gorgona
-                    </li>
-                    <li class="flex inline-block">
-                        <svg
-                            enable-background="new 0 0 24 24"
-                            class="fill-orange-500"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path d="m0 0h24v24h-24z" fill="none"></path><path
-                                d="m12 2c-3.87 0-7 3.13-7 7 0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5.79 0 1-.95 1.25-1.5.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4.92-1.47 1.42-3.1 1.42-4.84 0-3.87-3.13-7-7-7zm0 9.75c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                            ></path></svg
-                        >
-                        Hato Montaña
-                    </li>
-                    <li class="flex inline-block">
-                        <svg
-                            enable-background="new 0 0 24 24"
-                            class="fill-orange-500"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path d="m0 0h24v24h-24z" fill="none"></path><path
-                                d="m12 2c-3.87 0-7 3.13-7 7 0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5.79 0 1-.95 1.25-1.5.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4.92-1.47 1.42-3.1 1.42-4.84 0-3.87-3.13-7-7-7zm0 9.75c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                            ></path></svg
-                        >
-                        Milla 8
-                    </li>
-                    <li class="flex inline-block">
-                        <svg
-                            enable-background="new 0 0 24 24"
-                            class="fill-orange-500"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path d="m0 0h24v24h-24z" fill="none"></path><path
-                                d="m12 2c-3.87 0-7 3.13-7 7 0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5.79 0 1-.95 1.25-1.5.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4.92-1.47 1.42-3.1 1.42-4.84 0-3.87-3.13-7-7-7zm0 9.75c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                            ></path></svg
-                        >
-                        Rio Abajo
-                    </li>
-                    <li class="flex inline-block">
-                        <svg
-                            enable-background="new 0 0 24 24"
-                            class="fill-orange-500"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path d="m0 0h24v24h-24z" fill="none"></path><path
-                                d="m12 2c-3.87 0-7 3.13-7 7 0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5.79 0 1-.95 1.25-1.5.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4.92-1.47 1.42-3.1 1.42-4.84 0-3.87-3.13-7-7-7zm0 9.75c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                            ></path></svg
-                        >
-                        San Antonio
-                    </li>
-                    <li class="flex inline-block">
-                        <svg
-                            enable-background="new 0 0 24 24"
-                            class="fill-orange-500"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path d="m0 0h24v24h-24z" fill="none"></path><path
-                                d="m12 2c-3.87 0-7 3.13-7 7 0 1.74.5 3.37 1.41 4.84.95 1.54 2.2 2.86 3.16 4.4.47.75.81 1.45 1.17 2.26.26.55.47 1.5 1.26 1.5.79 0 1-.95 1.25-1.5.37-.81.7-1.51 1.17-2.26.96-1.53 2.21-2.85 3.16-4.4.92-1.47 1.42-3.1 1.42-4.84 0-3.87-3.13-7-7-7zm0 9.75c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                            ></path></svg
-                        >
-                        Vista Hermosa
-                    </li>
-                </ul>
-            </div>
-        </div> -->
     </div>
 </section>
+
+<script>
+    // Esperar a que el DOM esté completamente cargado
+    document.addEventListener('DOMContentLoaded', () => {
+        // Referencias a elementos del DOM
+        const locationCards = document.querySelectorAll('.location-card');
+        const mapIframe = document.getElementById('map-iframe');
+        const getLocationBtn = document.getElementById('get-location-btn');
+        const getDirectionsBtn = document.getElementById('get-directions-btn');
+        
+        // Variables para almacenar ubicaciones
+        let activeLocationIndex: number | null = null;
+        let userLocation: {lat: number, lng: number} | null = null;
+        const baseMapUrl = "https://www.google.com/maps/d/u/0/embed?mid=1It3n67GZ0gzGfeKF1EmOWsBSEZcMi1I&ehbc=2E312F&noprof=1";
+        
+        // Agregar evento click a cada tarjeta de ubicación
+        locationCards.forEach((card) => {
+            card.addEventListener('click', () => {
+                // Remover clase activa de todas las tarjetas
+                locationCards.forEach(c => c.classList.remove('border-2', 'border-orange-500'));
+                
+                // Agregar clase activa a la tarjeta seleccionada
+                card.classList.add('border-2', 'border-orange-500');
+                
+                // Obtener datos de la ubicación
+                const index = parseInt(card.getAttribute('data-index') ?? '0');
+                const lat = parseFloat(card.getAttribute('data-lat') ?? '0');
+                const lng = parseFloat(card.getAttribute('data-lng') ?? '0');
+                
+                // Actualizar índice de ubicación activa
+                activeLocationIndex = index;
+                
+                // Actualizar URL del mapa para centrar en la ubicación seleccionada
+                if (mapIframe) {
+                    const centerParam = `&center=${lat},${lng}&zoom=15`;
+                    (mapIframe as HTMLIFrameElement).src = baseMapUrl + centerParam;
+                }
+                
+                // Mostrar botón de direcciones si tenemos la ubicación del usuario
+                if (userLocation && getDirectionsBtn) {
+                    getDirectionsBtn.classList.remove('hidden');
+                    getDirectionsBtn.classList.add('inline-flex');
+                }
+            });
+        });
+        
+        // Obtener ubicación del usuario
+        if (getLocationBtn) {
+            getLocationBtn.addEventListener('click', () => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            userLocation = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+                            
+                            // Mostrar botón de direcciones si hay una ubicación activa
+                            if (activeLocationIndex !== null && getDirectionsBtn) {
+                                getDirectionsBtn.classList.remove('hidden');
+                                getDirectionsBtn.classList.add('inline-flex');
+                            }
+                        },
+                        (error) => {
+                            console.error("Error getting location:", error);
+                            alert("No se pudo obtener su ubicación. Por favor, permita el acceso a su ubicación.");
+                        }
+                    );
+                } else {
+                    alert("La geolocalización no es compatible con este navegador.");
+                }
+            });
+        }
+        
+        // Obtener direcciones
+        if (getDirectionsBtn) {
+            getDirectionsBtn.addEventListener('click', () => {
+                if (userLocation && activeLocationIndex !== null) {
+                    // Obtener datos de la ubicación activa
+                    const activeCard = document.querySelector(`.location-card[data-index="${activeLocationIndex}"]`);
+                    const destLat = parseFloat(activeCard?.getAttribute('data-lat') ?? '0');
+                    const destLng = parseFloat(activeCard?.getAttribute('data-lng') ?? '0');
+                    
+                    // Generar URL de direcciones
+                    const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${destLat},${destLng}`;
+                    
+                    // Abrir direcciones en una nueva pestaña
+                    window.open(directionsUrl, '_blank');
+                }
+            });
+        }
+    });
+    
+</script>
+
 <style>
-    h2 {
-        display: block;
-        margin-top: 0.83em;
-        margin-bottom: 0.83em;
-        margin-left: 0;
-        margin-right: 0;
-        font-weight: bold;
-    }
     .responsiveWrapper {
         position: relative;
-        padding-bottom: 540px; /* 1050px/760px */
+        padding-bottom: 540px;
         padding-top: 5px;
         height: 0;
     }
@@ -200,3 +193,4 @@ console.log("javascript");
         height: auto;
     }
 </style>
+
